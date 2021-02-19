@@ -1,6 +1,7 @@
 // Autor: Juan Carlos Cardoso de Oliveira
 package main;
 
+import util.Info;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,8 +14,8 @@ public class TelaConfiguracao extends javax.swing.JFrame {
     public TelaConfiguracao() {
         initComponents();
         // Lê o arquivo com a quantidade de armazenamento do silo, e mostra na tela.
-        try {
-            File file = new File("C:\\Users\\juano\\Documents\\NetBeansProjects\\SiloBytes\\src\\conf\\qtd-silo.dat"); 
+        try { 
+            File file = new File(Info.ARQUIVO_QTD_SILO); 
             BufferedReader br = new BufferedReader(new FileReader(file)); 
             String st; 
             while ((st = br.readLine()) != null) 
@@ -24,7 +25,7 @@ public class TelaConfiguracao extends javax.swing.JFrame {
         }
         // Lê o arquivo com o preço da diária do silo, e mostra na tela.
         try {
-            File file = new File("C:\\Users\\juano\\Documents\\NetBeansProjects\\SiloBytes\\src\\conf\\preco-diaria.dat"); 
+            File file = new File(Info.ARQUIVO_PRECO_DIARIA); 
             BufferedReader br = new BufferedReader(new FileReader(file)); 
             String st; 
             while ((st = br.readLine()) != null) 
@@ -62,6 +63,8 @@ public class TelaConfiguracao extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Quantidade de armazenamento do silo:");
+
+        campoQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setText("kg");
@@ -166,7 +169,7 @@ public class TelaConfiguracao extends javax.swing.JFrame {
         // Salva a quantidade de armazenamento do silo em um arquivo.
         try {
             String str = campoQuantidade.getText();
-            FileOutputStream outputStream = new FileOutputStream("C:\\Users\\juano\\Documents\\NetBeansProjects\\SiloBytes\\src\\conf\\qtd-silo.dat");
+            FileOutputStream outputStream = new FileOutputStream(Info.ARQUIVO_QTD_SILO);
             byte[] strToBytes = str.getBytes();
             outputStream.write(strToBytes);
             outputStream.close();
@@ -180,7 +183,7 @@ public class TelaConfiguracao extends javax.swing.JFrame {
         // Salva o preço da diária do silo em um arquivo.
         try {
             String str = campoPreco.getText();
-            FileOutputStream outputStream = new FileOutputStream("C:\\Users\\juano\\Documents\\NetBeansProjects\\SiloBytes\\src\\conf\\preco-diaria.dat");
+            FileOutputStream outputStream = new FileOutputStream(Info.ARQUIVO_PRECO_DIARIA);
             byte[] strToBytes = str.getBytes();
             outputStream.write(strToBytes);
             outputStream.close();
