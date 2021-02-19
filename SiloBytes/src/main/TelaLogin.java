@@ -104,6 +104,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // fazer autenticação de login
+        
+        // abrir arquivo de usuarios
+        
+        // ler arquivo de usuarios
+        
+        // comparar senha e login com o conteudo do arquivo
         
         JFrame telasistema = new TelaSistema();        
         telasistema.setLocationRelativeTo(null);
