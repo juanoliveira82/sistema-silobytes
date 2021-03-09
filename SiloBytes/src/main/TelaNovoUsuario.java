@@ -4,6 +4,9 @@ package main;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.ContaLinhasArquivo;
@@ -30,6 +33,7 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
         campoLogin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Usuário - SiloBytes");
 
         panelCadastro.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -125,22 +129,32 @@ public class TelaNovoUsuario extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // Criação de Strings com as informações de cadastro.
-        String cadastro, id;        
+        String cadastro;        
         String nome = campoNome.getText();
         String login = campoLogin.getText();
         String senha = campoSenha.getText();
-              
-        // Descobre qual é o Id para cadastro.
-        int tamanhoArquivo = 0;
+                      
+        /*  Utilizando a API java para gerar o Hash da senha utilizando o 
+            algoritmo SHA-256 e transformando em formato hexadecimal.  */
+        String senhahex = null;
+        MessageDigest algorithm;        
         try {
-            tamanhoArquivo = ContaLinhasArquivo.contaLinhasArquivo(Info.ARQUIVO_USUARIOS);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }        
-        id = String.valueOf(tamanhoArquivo);
-        
+            algorithm = MessageDigest.getInstance("SHA-256");
+            byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+              hexString.append(String.format("%02X", 0xFF & b));
+            }
+            senhahex = hexString.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println(ex);
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println(ex);
+        }
+                
         // Cria uma String com a nova linha de cadastro do cliente, à ser escrita no arquivo.
-        cadastro = id+"|"+nome+"|"+login+"|"+senha;
+        cadastro = nome+";"+login+";"+senhahex+";";
         
         // Escreve a nova linha de cadastro do cliente no arquivo.
         try {

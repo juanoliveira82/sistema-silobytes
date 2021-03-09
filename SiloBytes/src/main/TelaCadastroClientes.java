@@ -153,9 +153,10 @@ public class TelaCadastroClientes extends javax.swing.JFrame {
                                                 .addComponent(jLabel3)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(campoCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(campoCEP, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(campoTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))))))
                 .addContainerGap(285, Short.MAX_VALUE))
         );
         panelCadastroLayout.setVerticalGroup(
