@@ -123,8 +123,6 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // fazer autenticação de login
-
         // Criação de Strings com as informações de tentativa de login.
         String login = campoLogin.getText();
         String senha = campoSenha.getText();
@@ -157,7 +155,7 @@ public class TelaLogin extends javax.swing.JFrame {
             System.out.println(ex);
         }
 
-        // Lista com todos os usuários.
+        // Criação da lista para armazenar todas as informações do arquivo.
         List<String[]> lista = new ArrayList<String[]>();
 
         // Obtém cada linha da String com os dados do arquivo de usuários.
