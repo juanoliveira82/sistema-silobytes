@@ -37,7 +37,7 @@ public class TelaSistema extends javax.swing.JFrame {
         labelDisponibilidade = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         campoDisponivel = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAtualizarStatus = new javax.swing.JButton();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         menuCadArmazenagem = new javax.swing.JMenuItem();
@@ -120,11 +120,11 @@ public class TelaSistema extends javax.swing.JFrame {
         campoDisponivel.setEditable(false);
         campoDisponivel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizarStatus.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnAtualizarStatus.setText("Atualizar");
+        btnAtualizarStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAtualizarStatusActionPerformed(evt);
             }
         });
 
@@ -140,7 +140,7 @@ public class TelaSistema extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAtualizarStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoDisponivel))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -154,7 +154,7 @@ public class TelaSistema extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(campoDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnAtualizarStatus)
                 .addContainerGap())
         );
 
@@ -367,10 +367,11 @@ public class TelaSistema extends javax.swing.JFrame {
         telaArmazenagem.setVisible(true);
     }//GEN-LAST:event_menuCadArmazenagemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAtualizarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarStatusActionPerformed
         disponibilidadeSilo();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAtualizarStatusActionPerformed
     
+    // Função para atualizar as informações na tela.
     public void atualizarInformacoes() {
         // Verifica a capacidade de armazenamento do silo e mostra na tela.
         campoQtdArmSilo.setText(String.valueOf(UtilSilo.verificarArmazenamentoSilo()));
@@ -386,11 +387,17 @@ public class TelaSistema extends javax.swing.JFrame {
     }
     
     public void disponibilidadeSilo() {
+        // Verifica a disponibilidade no silo e modifica o Status na tela.
         int disp = UtilSilo.calcularDiponibilidadeSilo();
+        
+        // Se a disponibilidade for zero, mostra que o silo está indisponível.
         if(disp==0) {
             labelDisponibilidade.setText("Indisponível!");
             labelDisponibilidade.setForeground(Color.RED);
-        } else if(disp!=0) {
+        } 
+        
+        // Se a disponibilidade não for zero, mostra que o silo está disponível.
+        else if(disp!=0) {
             labelDisponibilidade.setText("Disponível!");
             labelDisponibilidade.setForeground(new java.awt.Color(51, 153, 0));
         }
@@ -419,13 +426,13 @@ public class TelaSistema extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnAtualizarStatus;
     private javax.swing.JButton btnCadArmazenagem;
     private javax.swing.JTextField campoDisponivel;
     private javax.swing.JTextField campoPorcentagem;
     private javax.swing.JTextField campoPreco;
     private javax.swing.JTextField campoQtdArmSilo;
     private javax.swing.JTextField campoUtilizacaoSilo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JPanel jPanel1;
