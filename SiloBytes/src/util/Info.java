@@ -1,6 +1,7 @@
 // Autor: Juan Carlos Cardoso de Oliveira
 package util;
 
+// Classe criada para armazenar Strings com a localização dos arquivos do sistema.
 public class Info {
     public static final String ARQUIVO_USUARIOS = "C:\\Users\\juano\\Documents\\GitHub\\sistema-silobytes\\SiloBytes\\src\\conf\\usuarios.dat"; 
     public static final String ARQUIVO_CLIENTES = "C:\\Users\\juano\\Documents\\GitHub\\sistema-silobytes\\SiloBytes\\src\\conf\\clientes.dat"; 

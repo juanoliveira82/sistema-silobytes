@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import util.Info;
 
@@ -156,13 +157,13 @@ public class TelaLogin extends javax.swing.JFrame {
         }
 
         // Criação da lista para armazenar todas as informações do arquivo.
-        List<String[]> lista = new ArrayList<String[]>();
+        List<String[]> lista = new ArrayList<>();
 
         // Obtém cada linha da String com os dados do arquivo de usuários.
         String[] linhas = dados.split("\n");
 
         // Passa por cada linha da String para gerar as colunas dos usuários.
-        for (int i = 0; i < linhas.length; i++) {
+        for(int i = 0; i < linhas.length; i++) {
             
             // Gerando as colunas.
             String[] colunas = linhas[i].split(";");
@@ -171,15 +172,22 @@ public class TelaLogin extends javax.swing.JFrame {
             lista.add(colunas);
 
             // Comparação das informações passadas pelo usuário, com as informações do arquivo.
-            if (Objects.equals(login, lista.get(i)[1]) && Objects.equals(senhahex, lista.get(i)[2])) {
+            if (Objects.equals(login, lista.get(i)[1]) && Objects.equals(senhahex, lista.get(i)[2])) {                
                 
                 // Caso as informações sejam verdadeiras, abre a tela do sistema.
                 JFrame telasistema = new TelaSistema();
                 telasistema.setLocationRelativeTo(null);
                 telasistema.setVisible(true);
+                
+                // Fecha a tela de login.
                 this.dispose();
-                break;
-            } else {
+                
+                // Mostra uma mensagem de boas vindas do sistema.
+                JOptionPane.showMessageDialog(this, "Seja bem-vindo(a) "+lista.get(i)[0], "SiloBytes", 1);
+                
+                break;                
+            } else {                
+                // Caso as informações sejam falsas, mostra que o login e a senha estão incorretos.
                 labelVerificacao.setText("Login ou senha incorretos.");
             }
         }
