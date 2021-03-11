@@ -1,24 +1,17 @@
 // Autor: Juan Carlos Cardoso de Oliveira
 package main;
 
-import util.Info;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Color;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import util.UtilSilo;
 
 public class TelaSistema extends javax.swing.JFrame {
 
     public TelaSistema() {
         initComponents();
         atualizarInformacoes();
+        disponibilidadeSilo();
     }
 
     @SuppressWarnings("unchecked")
@@ -37,9 +30,17 @@ public class TelaSistema extends javax.swing.JFrame {
         labelLogo = new javax.swing.JLabel();
         btnCadArmazenagem = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
+        labelUtilizacaoSilo1 = new javax.swing.JLabel();
+        campoPreco = new javax.swing.JTextField();
+        labelPorcentagem1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        labelDisponibilidade = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        campoDisponivel = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuCadArmazenagem = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenuItem();
         menuClientes = new javax.swing.JMenuItem();
         menuConfiguracoes = new javax.swing.JMenu();
@@ -97,6 +98,66 @@ public class TelaSistema extends javax.swing.JFrame {
             }
         });
 
+        labelUtilizacaoSilo1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelUtilizacaoSilo1.setText("Preço da Diária do Silo:");
+
+        campoPreco.setEditable(false);
+        campoPreco.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        labelPorcentagem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelPorcentagem1.setText("reais.");
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status do Silo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+
+        labelDisponibilidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelDisponibilidade.setForeground(new java.awt.Color(51, 153, 0));
+        labelDisponibilidade.setText("Disponível!");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Quantidade Disponível:");
+
+        campoDisponivel.setEditable(false);
+        campoDisponivel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDisponibilidade)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoDisponivel))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelDisponibilidade)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(campoDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,7 +171,7 @@ public class TelaSistema extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAtualizar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelCapacidadeSilo)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(labelUtilizacaoSilo)
@@ -118,45 +179,71 @@ public class TelaSistema extends javax.swing.JFrame {
                                 .addComponent(campoUtilizacaoSilo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(labelUtilizacaoKg))
-                            .addComponent(btnCadArmazenagem))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoQtdArmSilo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(campoPorcentagem))
+                            .addComponent(btnCadArmazenagem)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(labelUtilizacaoSilo1)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoPreco)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelArmazenamentoKg)
-                            .addComponent(labelPorcentagem))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(campoQtdArmSilo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                    .addComponent(campoPorcentagem))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelArmazenamentoKg)
+                                    .addComponent(labelPorcentagem)))
+                            .addComponent(labelPorcentagem1))))
+                .addGap(83, 83, 83)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCapacidadeSilo)
-                    .addComponent(campoQtdArmSilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelArmazenamentoKg))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelUtilizacaoSilo)
-                    .addComponent(campoUtilizacaoSilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelUtilizacaoKg)
-                    .addComponent(campoPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPorcentagem))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadArmazenagem)
-                    .addComponent(btnAtualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCapacidadeSilo)
+                            .addComponent(campoQtdArmSilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelArmazenamentoKg))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelUtilizacaoSilo)
+                            .addComponent(campoUtilizacaoSilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelUtilizacaoKg)
+                            .addComponent(campoPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPorcentagem))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelUtilizacaoSilo1)
+                            .addComponent(campoPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPorcentagem1))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCadArmazenagem)
+                            .addComponent(btnAtualizar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)))
                 .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         menuCadastro.setText("Cadastro");
 
-        jMenuItem1.setText("Cadastro de Armazenagem");
-        menuCadastro.add(jMenuItem1);
+        menuCadArmazenagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-silo-16.png"))); // NOI18N
+        menuCadArmazenagem.setText("Cadastro de Armazenagem");
+        menuCadArmazenagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadArmazenagemActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(menuCadArmazenagem);
 
         menuUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-user-account-16.png"))); // NOI18N
         menuUsuarios.setText("Cadastro de Usuários");
@@ -267,85 +354,47 @@ public class TelaSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnCadArmazenagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadArmazenagemActionPerformed
-        // Abre a tela de configuração do sistema.
+        // Abre a tela para cadastro de armazenagens.
         JFrame telaArmazenagem = new TelaArmazenagem();
         telaArmazenagem.setLocationRelativeTo(null);
         telaArmazenagem.setVisible(true);
     }//GEN-LAST:event_btnCadArmazenagemActionPerformed
 
-    // Função para verificar a capacidade do silo.
-    public static int verificarArmazenamentoSilo() {
-        int quantidade = 0;
-        // Lê o arquivo com a quantidade de armazenamento do silo.
-        try {
-            File file = new File(Info.ARQUIVO_QTD_SILO); 
-            BufferedReader br = new BufferedReader(new FileReader(file)); 
-            String st; 
-            while ((st = br.readLine()) != null) 
-                quantidade = Integer.valueOf(st);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler configurações do sistema.");            
-        }
-        return quantidade;
-    }
-    
-    // Função para calcular a utilização do silo.
-    public static int calcularUso() {
-        // Variável para salvar o total de uso do silo.
-        int total = 0;
-        
-        // Lê o arquivo com informações dos usuários.
-        String dados = null;
-        try {   
-            // Escreve todas as informações do arquivo em uma String.
-            dados = new String(Files.readAllBytes(Paths.get(Info.ARQUIVO_ARMAZENAGENS)));
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-                
-        // Criação da lista para armazenar todas as informações do arquivo.
-        List<String[]> lista = new ArrayList<String[]>();
+    private void menuCadArmazenagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadArmazenagemActionPerformed
+        // Abre a tela para cadastro de armazenagens.
+        JFrame telaArmazenagem = new TelaArmazenagem();
+        telaArmazenagem.setLocationRelativeTo(null);
+        telaArmazenagem.setVisible(true);
+    }//GEN-LAST:event_menuCadArmazenagemActionPerformed
 
-        // Obtém cada linha da String com os dados do arquivo de armazenagens.
-        String[] linhas = dados.split("\n");
-
-        // Passa por cada linha da String para gerar as colunas das armazenagens.
-        for (int i = 0; i < linhas.length; i++) {
-            
-            // Gerando as colunas.
-            String[] colunas = linhas[i].split(";");
-
-            // A adicionando à lista.
-            lista.add(colunas);
-
-            // Realiza a soma de todas as quantidades de armazenagens.
-            total = total + Integer.valueOf(lista.get(i)[1]);
-        }
-        return total;
-    }
-    
-    // Função para calcular a porcentagem de utilização do silo.
-    public static double calcularPorcentagemUso() {
-        // Recebe a quantidade de uso do silo.
-        double uso = calcularUso();
-        
-        // Recebe a capacidade total do silo.
-        double total = verificarArmazenamentoSilo();
-
-        // Calcula e retorna a porcentagem.
-        double porcentagem = ((uso/total)*100); 
-        return porcentagem;
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        disponibilidadeSilo();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void atualizarInformacoes() {
         // Verifica a capacidade de armazenamento do silo e mostra na tela.
-        campoQtdArmSilo.setText(String.valueOf(verificarArmazenamentoSilo()));
+        campoQtdArmSilo.setText(String.valueOf(UtilSilo.verificarArmazenamentoSilo()));
                 
         // Calcula a quantidade utilizada do silo e mostra na tela.
-        campoUtilizacaoSilo.setText(String.valueOf(calcularUso()));
+        campoUtilizacaoSilo.setText(String.valueOf(UtilSilo.calcularUso()));
         
         // Calcula a porcentagem de utilização do silo e mostra na tela.
-        campoPorcentagem.setText(String.valueOf(calcularPorcentagemUso()));
+        campoPorcentagem.setText(String.valueOf(UtilSilo.calcularPorcentagemUso()));
+        
+        // Verifica o preço da diária do silo e mostra na tela.
+        campoPreco.setText(String.valueOf(UtilSilo.verificaPrecoDiariaSilo()));
+    }
+    
+    public void disponibilidadeSilo() {
+        int disp = UtilSilo.calcularDiponibilidadeSilo();
+        if(disp==0) {
+            labelDisponibilidade.setText("Indisponível!");
+            labelDisponibilidade.setForeground(Color.RED);
+        } else if(disp!=0) {
+            labelDisponibilidade.setText("Disponível!");
+            labelDisponibilidade.setForeground(new java.awt.Color(51, 153, 0));
+        }
+        campoDisponivel.setText(String.valueOf(disp));
     }
     
     public static void main(String args[]) {
@@ -371,18 +420,26 @@ public class TelaSistema extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadArmazenagem;
+    private javax.swing.JTextField campoDisponivel;
     private javax.swing.JTextField campoPorcentagem;
+    private javax.swing.JTextField campoPreco;
     private javax.swing.JTextField campoQtdArmSilo;
     private javax.swing.JTextField campoUtilizacaoSilo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBarPrincipal;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelArmazenamentoKg;
     private javax.swing.JLabel labelCapacidadeSilo;
+    private javax.swing.JLabel labelDisponibilidade;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelPorcentagem;
+    private javax.swing.JLabel labelPorcentagem1;
     private javax.swing.JLabel labelUtilizacaoKg;
     private javax.swing.JLabel labelUtilizacaoSilo;
+    private javax.swing.JLabel labelUtilizacaoSilo1;
+    private javax.swing.JMenuItem menuCadArmazenagem;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenuItem menuClientes;
     private javax.swing.JMenu menuConfiguracoes;
