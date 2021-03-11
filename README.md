@@ -1,9 +1,6 @@
 <p align="center">
-  <img src=".github/SiloBytes.png"/><br/>  
+  <img src=".github/SiloBytes.png" width="250"/><br/>  
 </p>
-<h4 align="center">
-  SiloBytes
-</h4>
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
@@ -11,6 +8,10 @@
   <a href="#-autor">Autor</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
+
+## 🚀 Tecnologias
+
+Implementação realizada com a linguagem de programação [Java](https://www.oracle.com/java/) na [IDE NetBeans](https://netbeans.org/).
 
 ## 👨‍💻 Autor
 
