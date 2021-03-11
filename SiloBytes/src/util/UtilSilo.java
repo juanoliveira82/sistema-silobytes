@@ -61,24 +61,21 @@ public class UtilSilo {
         } catch (IOException ex) {
             System.out.println(ex);
         }
-                
-        // Criação da lista para armazenar todas as informações do arquivo.
-        List<String[]> lista = new ArrayList<String[]>();
-
+               
         // Obtém cada linha da String com os dados do arquivo de armazenagens.
         String[] linhas = dados.split("\n");
 
-        // Passa por cada linha da String para gerar as colunas das armazenagens.
-        for (int i = 0; i < linhas.length; i++) {
+        // Passa por cada linha da String para identificar as armazenagens.
+        for (int i = 1; i < linhas.length; i++) {
             
+            // Troca o divisor de elementos da String para melhor reconhecimento. 
+            String linhaReplace = linhas[i].replace("|", ";");
+                        
             // Gerando as colunas.
-            String[] colunas = linhas[i].split(";");
-
-            // A adicionando à lista.
-            lista.add(colunas);
+            String[] colunas = linhaReplace.split(";");
 
             // Realiza a soma de todas as quantidades de armazenagens.
-            total = total + Integer.valueOf(lista.get(i)[1]);
+            total = total + Integer.valueOf(colunas[1]);
         }
         return total;
     }
