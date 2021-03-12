@@ -9,6 +9,19 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
+<p align="center">
+  <br/>
+  <img src=".github/TelaPrincipal.png"/>
+  <br/>
+</p>
+
+## 💻 Projeto
+
+Sistema para controle de armazenamento em um Silo. Onde os usuários fazem o login na aplicação e podem cadastrar clientes, e realizar armazenagens e retiradas no silo.
+Todos os cadastros são feitos em arquivos.
+
+O sistema conta com uma interface fácil de usar, com todas as informações necessárias já na tela principal.
+
 ## 🚀 Tecnologias
 
 Implementação realizada com a linguagem de programação [Java](https://www.oracle.com/java/) na [IDE NetBeans](https://netbeans.org/).
