@@ -29,3 +29,7 @@ Implementação realizada com a linguagem de programação [Java](https://www.or
 ## 👨‍💻 Autor
 
 [Juan Carlos Cardoso de Oliveira](https://github.com/juanoliveira82) - Estudante do curso de Ciência da Computação na Universidade Estadual do Norte do Paraná (UENP).
+
+## :memo: Licença
+
+Esse projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
