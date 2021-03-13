@@ -623,6 +623,8 @@ public class TelaSistema extends javax.swing.JFrame {
             labelDisponibilidade.setText("Disponível!");
             labelDisponibilidade.setForeground(new java.awt.Color(51, 153, 0));
         }
+        
+        // Mostra na tela a quantidade disponível no silo.
         campoDisponivel.setText(String.valueOf(disp));
     }
         
@@ -654,7 +656,7 @@ public class TelaSistema extends javax.swing.JFrame {
         }
     }
         
-    // Carrega o conteúdo do arquivo usuarios.dat na Tabela.
+    // Carrega o conteúdo do arquivo de armazenagens na tabela.
     private void carregarNaTabela(){
         DataFileTableModel model;
         model = new DataFileTableModel(Info.ARQUIVO_ARMAZENAGENS);        
